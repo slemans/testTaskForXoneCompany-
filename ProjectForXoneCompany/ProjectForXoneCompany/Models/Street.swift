@@ -9,8 +9,6 @@ import UIKit
 import Firebase
 
 struct Street {
-  
-    
     var lable: String
     let ref: DatabaseReference?
     var arrayImage: [Images?]

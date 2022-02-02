@@ -14,7 +14,10 @@ extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCell.collectionCell, for: indexPath) as! CollectionViewCell
-        let imageStreet = oneIsStreet.arrayImage[indexPath.row]
+        let sortedArray = oneIsStreet.arrayImage.sorted(by: { ImagesOne, ImagesTwo in
+            ImagesOne!.title < ImagesTwo!.title
+        })
+        let imageStreet = sortedArray[indexPath.row]
         cell.configure(images: imageStreet)
         cell.indexCollectionViewCell = indexPath.row
         cell.nameCollectionViewCell = imageStreet?.title

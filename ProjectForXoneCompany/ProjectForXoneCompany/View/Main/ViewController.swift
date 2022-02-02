@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     var arrayStreet: [Street] = []
     var indexCellWherePutImages: Int?
     var streetWhyPick: Street!
-    let store = Storage.storage()
+//    let store = Storage.storage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +59,7 @@ class ViewController: UIViewController {
             }
             self?.arrayStreet = arrayStreetTwo
             self?.tableView.reloadData()
+            
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,7 +107,8 @@ class ViewController: UIViewController {
         labelTop.text = "ЛОКАЦИИ"
         labelTop.textAlignment = .center
         labelTop.textColor = #colorLiteral(red: 0.1294117647, green: 0.1254901961, blue: 0.1254901961, alpha: 1)
-        labelTop.font = UIFont(name: "Oswald-Regular", size: 37)
+        labelTop.font = UIFont(name: "Oswald-Regular", size: 40)
+        
         labelTop.translatesAutoresizingMaskIntoConstraints = false
         viewTop.addSubview(labelTop)
         labelTop.centerYAnchor.constraint(equalTo: viewTop.centerYAnchor).isActive = true

@@ -97,9 +97,9 @@ struct GetDate {
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateStyle = .short
-        formatter.dateFormat = "dd-MM-yyyy:HH-mm-ss"
+        formatter.dateFormat = "ddMMyyyyHHmmss"
         let datetime = formatter.string(from: now)
-        return "Image-\(datetime)"
+        return "\(datetime)"
     }
 }
 

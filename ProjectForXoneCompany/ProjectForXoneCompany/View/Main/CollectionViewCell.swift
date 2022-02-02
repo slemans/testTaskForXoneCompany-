@@ -58,9 +58,9 @@ class CollectionViewCell: UICollectionViewCell {
             let urlImg = URL(string: image) else { return }
         URLSession.shared.dataTask(with: urlImg) { [weak self] data, _, _ in
             let queue = DispatchQueue.global(qos: .utility)
-            queue.async {
+            queue.sync {
                 if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.sync {
                         self?.showCaseImageView.image = image
                         self?.indicator.stopAnimating()
                     }

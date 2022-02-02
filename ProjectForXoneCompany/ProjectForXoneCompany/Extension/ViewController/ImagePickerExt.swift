@@ -34,7 +34,9 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         }
     }
     func uploadImageFireStorege(photo: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
-       let storeRef = store.reference().child("photo").child(GetDate.time)
+//       let storeRef = store.reference().child("photo").child(GetDate.time)
+        let storeRef = FirebaseStorageProject.storage.reference().child("photo").child(GetDate.time)
+        
        guard let data = photo.jpegData(compressionQuality: 0.4) else { return }
        let metaDate = StorageMetadata()
        metaDate.contentType = "image/jpeg"
