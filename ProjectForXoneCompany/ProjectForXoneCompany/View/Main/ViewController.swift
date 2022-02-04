@@ -5,11 +5,10 @@
 //  Created by sleman on 01.02.22.
 //
 
-import UIKit
 import Firebase
+import UIKit
 
 class ViewController: UIViewController {
-
     let tableView: UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +17,7 @@ class ViewController: UIViewController {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TitleCell.tableCell)
         return tableView
     }()
+
     private let buttonAddCell: UIButton = {
         let button = UIButton(type: .system)
         let largeConfig = UIImage.SymbolConfiguration(pointSize: NumberCGFloat.fiftyFive, weight: .regular, scale: .large)
@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+
     var arrayStreet: [Street] = []
     var indexCellWherePutImages: Int?
     var streetWhyPick: Street!
@@ -54,20 +55,20 @@ class ViewController: UIViewController {
             var arrayStreetTwo = [Street]()
             for item in snapshot.children {
                 guard let snapshot = item as? DataSnapshot,
-                    let street = Street(snapshot: snapshot) else { continue }
+                      let street = Street(snapshot: snapshot) else { continue }
                 arrayStreetTwo.append(street)
             }
             self?.arrayStreet = arrayStreetTwo
             self?.tableView.reloadData()
-            
         }
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         FirebaseDatabaseProject.ref.removeAllObservers()
     }
 
-    @objc func pressed(_ sender: UIButton) {
+    @objc func pressed(_: UIButton) {
         let newStreetTask = Street(lable: "Название локации")
         arrayStreet.append(newStreetTask)
         let newSteet = FirebaseDatabaseProject.ref.child("location\(arrayStreet.count)")
@@ -108,12 +109,13 @@ class ViewController: UIViewController {
         labelTop.textAlignment = .center
         labelTop.textColor = #colorLiteral(red: 0.1294117647, green: 0.1254901961, blue: 0.1254901961, alpha: 1)
         labelTop.font = UIFont(name: "Oswald-Regular", size: 40)
-        
+
         labelTop.translatesAutoresizingMaskIntoConstraints = false
         viewTop.addSubview(labelTop)
         labelTop.centerYAnchor.constraint(equalTo: viewTop.centerYAnchor).isActive = true
         labelTop.centerXAnchor.constraint(equalTo: viewTop.centerXAnchor).isActive = true
     }
+
     private func startSetting() {
         buttonAddCell.addTarget(self, action: #selector(pressed(_:)), for: .touchUpInside)
         tableView.dataSource = self
@@ -132,10 +134,3 @@ class ViewController: UIViewController {
         setupButton()
     }
 }
-
-
-
-
-
-
-

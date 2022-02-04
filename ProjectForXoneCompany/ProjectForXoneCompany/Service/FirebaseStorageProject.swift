@@ -15,7 +15,6 @@ struct FirebaseStorageProject {
         storage = Storage.storage(url: storeUrl)
         return storage
     }
+
     static let storageRef = FirebaseStorageProject.storage.reference()
 }
-
-

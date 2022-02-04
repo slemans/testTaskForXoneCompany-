@@ -8,7 +8,7 @@
 import UIKit
 
 extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return oneIsStreet.arrayImage.count
     }
 
@@ -23,7 +23,8 @@ extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.nameCollectionViewCell = imageStreet?.title
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = oneIsStreet.arrayImage[indexPath.row]?.url
         delegate?.openImages(images: image)
     }

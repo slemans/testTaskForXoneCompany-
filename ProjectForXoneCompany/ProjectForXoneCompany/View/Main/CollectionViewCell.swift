@@ -6,12 +6,11 @@
 //
 
 import UIKit
-         
 
 class CollectionViewCell: UICollectionViewCell {
     var indexCollectionViewCell: Int!
     var nameCollectionViewCell: String!
-    
+
     private let indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -19,6 +18,7 @@ class CollectionViewCell: UICollectionViewCell {
         indicator.startAnimating()
         return indicator
     }()
+
     private let showCaseImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -28,14 +28,12 @@ class CollectionViewCell: UICollectionViewCell {
         return imageView
     }()
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
-        // 
+        //
     }
 
-    
     private func initialize() {
         contentView.addSubview(showCaseImageView)
         contentView.addSubview(indicator)
@@ -46,16 +44,18 @@ class CollectionViewCell: UICollectionViewCell {
             showCaseImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             showCaseImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             showCaseImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            showCaseImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            ])
+            showCaseImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        ])
     }
+
     public func configure(images: Images?) {
         guard let images = images else { return }
         putImage(image: images.url)
     }
+
     private func putImage(image: String?) {
         guard let image = image,
-            let urlImg = URL(string: image) else { return }
+              let urlImg = URL(string: image) else { return }
         URLSession.shared.dataTask(with: urlImg) { [weak self] data, _, _ in
             let queue = DispatchQueue.global(qos: .utility)
             queue.sync {
@@ -68,7 +68,9 @@ class CollectionViewCell: UICollectionViewCell {
             }
         }.resume()
     }
-    required init?(coder aDecoder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

@@ -27,6 +27,7 @@ class TableViewCell: UITableViewCell {
         stackView.layer.shadowColor = ColorCGColor.grey
         return stackView
     }()
+
     private let stackViewTwo: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -46,6 +47,7 @@ class TableViewCell: UITableViewCell {
         stackView.layer.cornerRadius = NumberCGFloat.twenty
         return stackView
     }()
+
     private let stackViewTree: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -64,6 +66,7 @@ class TableViewCell: UITableViewCell {
         stackView.layer.borderWidth = NumberCGFloat.one
         return stackView
     }()
+
     private let stackViewFour: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -77,6 +80,7 @@ class TableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+
     var stackViewFive: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -90,6 +94,7 @@ class TableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+
     private let stackViewFourOne: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -114,6 +119,7 @@ class TableViewCell: UITableViewCell {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: TitleCell.collectionCell)
         return collectionView
     }()
+
     private let buttonAddPhoto: UIButton = {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: NumberCGFloat.twentyTwo, weight: .regular, scale: .large)
@@ -134,10 +140,9 @@ class TableViewCell: UITableViewCell {
         return textField
     }()
 
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.initialize()
+        initialize()
         textFieldMain.delegate = self
     }
 
@@ -147,7 +152,7 @@ class TableViewCell: UITableViewCell {
         }
     }
 
-    @objc func addNewPhoto(_ sender: UIButton) {
+    @objc func addNewPhoto(_: UIButton) {
         delegate?.returnTableReviews(index: indexStreet, street: oneIsStreet)
     }
 
@@ -175,27 +180,21 @@ class TableViewCell: UITableViewCell {
             stackViewOne.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: NumberCGFloat.twentyFiveMinus),
             stackViewFive.heightAnchor.constraint(equalToConstant: 130), // height all block
             stackViewFour.heightAnchor.constraint(equalToConstant: 45),
-            
+
             buttonAddPhoto.rightAnchor.constraint(equalTo: stackViewFourOne.rightAnchor),
             buttonAddPhoto.leftAnchor.constraint(equalTo: stackViewFourOne.leftAnchor),
             buttonAddPhoto.bottomAnchor.constraint(equalTo: stackViewFourOne.bottomAnchor),
             buttonAddPhoto.topAnchor.constraint(equalTo: stackViewFourOne.topAnchor),
-            
+
             collectionView.topAnchor.constraint(equalTo: stackViewFive.topAnchor),
 //            collectionView.bottomAnchor.constraint(equalTo: stackViewFive.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: stackViewFive.leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: stackViewFive.rightAnchor, constant: NumberCGFloat.tenMinus)
-            ])
+            collectionView.rightAnchor.constraint(equalTo: stackViewFive.rightAnchor, constant: NumberCGFloat.tenMinus),
+        ])
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
-
-
-
-
-

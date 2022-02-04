@@ -15,6 +15,7 @@ class ImagesViewController: UIViewController {
         indicator.startAnimating()
         return indicator
     }()
+
     private let imagesColectionView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -22,6 +23,7 @@ class ImagesViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+
     private let button: UIButton = {
         let button = UIButton()
         button.setImage(ConstantsImage.imageDelete, for: .normal)
@@ -34,18 +36,19 @@ class ImagesViewController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: NumberCGFloat.thirtyFour).isActive = true
         return button
     }()
-    
+
     var image: UIImage?
     var imageUrl: String?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         startSetting()
     }
-    @objc func buttonDismissView(_ sender: UIButton) {
+
+    @objc func buttonDismissView(_: UIButton) {
         dismiss(animated: true)
     }
-    
+
     private func startSetting() {
         button.addTarget(self, action: #selector(buttonDismissView(_:)), for: .touchUpInside)
         view.addSubview(imagesColectionView)
@@ -59,13 +62,14 @@ class ImagesViewController: UIViewController {
             indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             button.topAnchor.constraint(equalTo: view.topAnchor, constant: NumberCGFloat.twentyFive),
-            button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: NumberCGFloat.twentyFiveMinus)
+            button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: NumberCGFloat.twentyFiveMinus),
         ])
         getImageAndPut()
     }
-    private func getImageAndPut(){
+
+    private func getImageAndPut() {
         guard let image = imageUrl,
-            let urlImg = URL(string: image) else { return }
+              let urlImg = URL(string: image) else { return }
         URLSession.shared.dataTask(with: urlImg) { [weak self] data, _, _ in
             let queue = DispatchQueue.global(qos: .utility)
             queue.async {
